@@ -1,4 +1,6 @@
-# webtech-projekt
+[![CI](https://github.com/mellixt/webtech-projekt/actions/workflows/main.yml/badge.svg)](https://github.com/mellixt/webtech-projekt/actions/workflows/main.yml)
+
+webtech-projekt
 
 
 ## Projektbeschreibung
