@@ -1,0 +1,20 @@
+name: CI
+
+# 1.Checkout des Codes, 2.Setup des JDKs,  3.gradle clean build
+# "on" beschreibt, wann die Funktionen unter "jobs" ausgeführt werden sollen
+# "runs-on" gibt den Server an
+
+on: [ push ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 16
+        uses: actions/setup-java@v2
+        with:
+          distribution: "adopt"
+          java-version: 16
+        - name: clean build
+          run: ./gradlew clean test --info --stacktrace
