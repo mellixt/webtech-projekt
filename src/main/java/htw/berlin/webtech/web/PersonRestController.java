@@ -13,6 +13,7 @@ import java.util.List;
  * Für später:
  * - GetMapping Pfad ändern
  * - Klasse "Person" zu Umfrage (?) ändern
+ * - Postman Collection anpassen
  */
 
 @RestController
