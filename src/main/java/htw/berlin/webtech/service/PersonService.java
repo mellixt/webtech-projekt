@@ -3,7 +3,7 @@ package htw.berlin.webtech.service;
 import htw.berlin.webtech.persistence.PersonEntity;
 import htw.berlin.webtech.persistence.PersonRepository;
 import htw.berlin.webtech.web.api.Person;
-import htw.berlin.webtech.web.api.PersonCreateRequest;
+import htw.berlin.webtech.web.api.PersonManipulationRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,10 +25,40 @@ public class PersonService {
                 .collect(Collectors.toList());
     }
 
-    public Person create(PersonCreateRequest request) {
+    public Person findById(Long id) {
+        var personEntity = personRepository.findById(id);
+        return personEntity.map(this::transformEntity).orElse(null);
+    }
+
+    public Person update(Long id, PersonManipulationRequest request) {
+        var personEntityOptional = personRepository.findById(id);
+        if (personEntityOptional.isEmpty()) {
+            return null;
+        }
+
+        var personEntity = personEntityOptional.get();
+        personEntity.setFirstName(request.getFirstName());
+        personEntity.setLastName(request.getLastName());
+        personEntity.setVaccinated(request.isVaccinated());
+        personEntity = personRepository.save(personEntity);
+
+        return transformEntity(personEntity);
+
+    }
+
+    public Person create(PersonManipulationRequest request) {
         var personEntity = new PersonEntity(request.getFirstName(), request.getLastName(), request.isVaccinated());
         personEntity = personRepository.save(personEntity);
         return transformEntity(personEntity);
+    }
+
+    public boolean deleteById(Long id) {
+        if (!personRepository.existsById(id)) {
+            return false;
+        }
+
+        personRepository.deleteById(id);
+        return true;
     }
 
     private Person transformEntity(PersonEntity personEntity) {

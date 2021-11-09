@@ -1,14 +1,10 @@
 package htw.berlin.webtech.web;
 
-import htw.berlin.webtech.persistence.PersonRepository;
 import htw.berlin.webtech.service.PersonService;
 import htw.berlin.webtech.web.api.Person;
-import htw.berlin.webtech.web.api.PersonCreateRequest;
+import htw.berlin.webtech.web.api.PersonManipulationRequest;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -37,10 +33,27 @@ public class PersonRestController {
     }
 
     @PostMapping(path = "/api/v1/persons")
-    public ResponseEntity<Void> createPerson(@RequestBody PersonCreateRequest request) throws URISyntaxException {
+    public ResponseEntity<Void> createPerson(@RequestBody PersonManipulationRequest request) throws URISyntaxException {
         var person = personService.create(request);
         URI uri = new URI("/api/v1/persons/"+person.getId());
         return ResponseEntity.created(uri).build();
     }
 
+    @GetMapping(path = "/api/v1/persons/{id}")
+    public ResponseEntity<Person> fetchPersonId(@PathVariable Long id) {
+        var person = personService.findById(id);
+        return person != null? ResponseEntity.ok(person) : ResponseEntity.notFound().build();
+    }
+
+    @PutMapping(path = "/api/v1/persons/{id}")
+    public ResponseEntity<Person> updatePerson(@PathVariable Long id, @RequestBody PersonManipulationRequest request) {
+        var person = personService.update(id, request);
+        return person != null? ResponseEntity.ok(person) : ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping(path = "/api/v1/persons/{id}")
+    public ResponseEntity<Void> deletePerson(@PathVariable Long id) {
+        boolean successful = personService.deleteById(id);
+        return successful? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
+    }
 }
