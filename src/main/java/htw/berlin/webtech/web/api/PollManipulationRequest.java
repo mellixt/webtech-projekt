@@ -8,13 +8,15 @@ public class PollManipulationRequest {
     private String username;
     private String creationDate;
     private String endDate;
+    private String options;
 
 
-    public PollManipulationRequest(String title, String username, String creationDate, String endDate) {
+    public PollManipulationRequest(String title, String username, String creationDate, String endDate, String options) {
             this.title = title;
             this.username = username;
             this.creationDate = creationDate;
             this.endDate = endDate;
+            this.options = options;
     }
 
 
@@ -48,5 +50,13 @@ public class PollManipulationRequest {
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+
+    public String getOptions() {
+        return options;
+    }
+
+    public void setOptions(String options) {
+        this.options = options;
     }
 }

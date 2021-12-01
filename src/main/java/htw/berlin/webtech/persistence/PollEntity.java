@@ -2,6 +2,8 @@ package htw.berlin.webtech.persistence;
 // Test zum Pushennnnn
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @Entity(name = "polls")
@@ -24,23 +26,19 @@ public class PollEntity {
     @Column(name = "end_date", nullable = false)
     private String endDate;
 
-    /*
+    @Column(name = "options", nullable = false)
+    private String options;
 
-    ???????
-    @Column(name = "options")
-    private Map<Long, String> options;
-
-     */
-
-    public PollEntity(String title, String username, String creationDate, String endDate) {
+    public PollEntity(String title, String username, String creationDate, String endDate, String options) {
         this.title = title;
         this.username = username;
         this.creationDate = creationDate;
         this.endDate = endDate;
-       // this.options = options;
+        this.options = options;
     }
 
-    protected PollEntity() { }
+    protected PollEntity() {
+    }
 
     public Long getId() {
         return id;
@@ -82,4 +80,13 @@ public class PollEntity {
     public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
+
+    public String getOptions() {
+        return options;
+    }
+
+    public void setOptions(String options) {
+        this.options = options;
+    }
+
 }

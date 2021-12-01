@@ -12,15 +12,15 @@ public class Poll {
     private String username;
     private String creationDate;
     private String endDate;
-   // Options fehlt
+    private String options;
 
-    public Poll(long id, String title, String username, String creationDate, String endDate) {
+    public Poll(long id, String title, String username, String creationDate, String endDate, String options) {
         this.id = id;
         this.title = title;
         this.username = username;
         this.creationDate = creationDate;
         this.endDate = endDate;
-      //  this.options = options;
+        this.options = options;
     }
 
 
@@ -64,13 +64,12 @@ public class Poll {
         this.endDate = endDate;
     }
 
-  /* public Map<Long, String> getOptions() {
+    public String getOptions() {
         return options;
     }
 
-    public void setOptions(Map<Long, String> options) {
+    public void setOptions(String options) {
         this.options = options;
     }
 
-   */
 }

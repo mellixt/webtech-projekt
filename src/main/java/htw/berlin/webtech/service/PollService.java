@@ -41,6 +41,7 @@ public class PollService {
         pollEntity.setUsername(request.getUsername());
         pollEntity.setCreationDate(request.getCreationDate());
         pollEntity.setEndDate(request.getEndDate());
+        pollEntity.setOptions(request.getOptions());
         pollEntity = pollRepository.save(pollEntity);
 
         return transformEntity(pollEntity);
@@ -48,7 +49,7 @@ public class PollService {
     }
 
     public Poll create(PollManipulationRequest request) {
-        var pollEntity = new PollEntity(request.getTitle(),request.getUsername(), request.getCreationDate(), request.getEndDate());
+        var pollEntity = new PollEntity(request.getTitle(),request.getUsername(), request.getCreationDate(), request.getEndDate(), request.getOptions());
         pollEntity = pollRepository.save(pollEntity);
         return transformEntity(pollEntity);
     }
@@ -68,7 +69,8 @@ public class PollService {
                 pollEntity.getTitle(),
                 pollEntity.getUsername(),
                 pollEntity.getCreationDate(),
-                pollEntity.getEndDate()
+                pollEntity.getEndDate(),
+                pollEntity.getOptions()
         );
                 
     }
