@@ -19,6 +19,8 @@ public class PollManipulationRequest {
             this.options = options;
     }
 
+    public PollManipulationRequest() {}
+
 
     public String getTitle() {
         return title;
