@@ -16,7 +16,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedOrigins(
                         "https://localhost:3000",
                         "https://localhost:3001",
-                        "https://frontend-poll-app.herokuapp.com/"
+                        "https://frontend-poll-app.herokuapp.com"
                 );
     }
 }
