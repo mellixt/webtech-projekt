@@ -29,12 +29,16 @@ public class PollEntity {
     @Column(name = "options", nullable = false)
     private String options;
 
-    public PollEntity(String title, String username, String creationDate, String endDate, String options) {
+    @Column(name = "votes", nullable = false)
+    private String votes;
+
+    public PollEntity(String title, String username, String creationDate, String endDate, String options, String votes) {
         this.title = title;
         this.username = username;
         this.creationDate = creationDate;
         this.endDate = endDate;
         this.options = options;
+        this.votes = votes;
     }
 
     protected PollEntity() {
@@ -89,4 +93,11 @@ public class PollEntity {
         this.options = options;
     }
 
+    public String getVotes() {
+        return votes;
+    }
+
+    public void setVotes(String votes) {
+        this.votes = votes;
+    }
 }

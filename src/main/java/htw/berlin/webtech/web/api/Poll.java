@@ -13,14 +13,16 @@ public class Poll {
     private String creationDate;
     private String endDate;
     private String options;
+    private String votes;
 
-    public Poll(long id, String title, String username, String creationDate, String endDate, String options) {
+    public Poll(long id, String title, String username, String creationDate, String endDate, String options, String votes) {
         this.id = id;
         this.title = title;
         this.username = username;
         this.creationDate = creationDate;
         this.endDate = endDate;
         this.options = options;
+        this.votes = votes;
     }
 
 
@@ -70,6 +72,14 @@ public class Poll {
 
     public void setOptions(String options) {
         this.options = options;
+    }
+
+    public String getVotes() {
+        return votes;
+    }
+
+    public void setVotes(String votes) {
+        this.votes = votes;
     }
 
 }

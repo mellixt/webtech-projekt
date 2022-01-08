@@ -34,19 +34,19 @@ public class PollRestController {
     }
 
     @GetMapping(path = "/api/v1/polls/{id}")
-    public ResponseEntity<Poll> fetchPersonId(@PathVariable Long id) {
+    public ResponseEntity<Poll> fetchPollId(@PathVariable Long id) {
         var person = pollService.findById(id);
         return person != null? ResponseEntity.ok(person) : ResponseEntity.notFound().build();
     }
 
     @PutMapping(path = "/api/v1/polls/{id}")
-    public ResponseEntity<Poll> updatePerson(@PathVariable Long id, @RequestBody PollManipulationRequest request) {
+    public ResponseEntity<Poll> updatePoll(@PathVariable Long id, @RequestBody PollManipulationRequest request) {
         var person = pollService.update(id, request);
         return person != null? ResponseEntity.ok(person) : ResponseEntity.notFound().build();
     }
 
     @DeleteMapping(path = "/api/v1/polls/{id}")
-    public ResponseEntity<Void> deletePerson(@PathVariable Long id) {
+    public ResponseEntity<Void> deletePoll(@PathVariable Long id) {
         boolean successful = pollService.deleteById(id);
         return successful? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }
