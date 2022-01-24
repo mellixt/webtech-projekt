@@ -3,18 +3,25 @@ package htw.berlin.webtech.demo;
 import htw.berlin.webtech.persistence.PollEntity;
 import htw.berlin.webtech.persistence.PollRepository;
 import htw.berlin.webtech.web.api.Poll;
+import org.apache.juli.logging.Log;
 import org.junit.jupiter.api.*;
+import org.mockito.Mockito;
+import org.mockito.internal.matchers.Null;
 import org.springframework.boot.test.context.SpringBootTest;
 import htw.berlin.webtech.service.PollService;
+import org.xmlunit.builder.Input;
+
+import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.when;
 
 
 @SpringBootTest
 class WebtechApplicationTests {
 
-	@Test
+/*	@Test
 	@DisplayName("should test if poll  creation was successful")
 	void pollCreationTest(){
 		Poll poll = new Poll(1, "Wie spät ist es?", "Hans", "2021-01-01", "2021-01-03", "1Uhr,2Uhr,3Uhr", "0,1,1");
@@ -31,6 +38,22 @@ class WebtechApplicationTests {
 		assertEquals("Hannah", poll.getUsername());
 
 
+	}*/
+
+	private Poll poll;
+
+	@BeforeEach
+	void setup() {
+		poll = Mockito.mock(Poll.class);
+	}
+
+	@Test
+	@DisplayName("should test if poll creation with mock was successful")
+	void testWithMockito(){
+		//Arrange
+		//Poll poll = Mockito.mock(Poll.class);
+		//Assert
+		assertNotNull(poll);
 	}
 
 }
