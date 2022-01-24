@@ -5,8 +5,11 @@ import htw.berlin.webtech.persistence.PollRepository;
 import htw.berlin.webtech.web.api.Poll;
 import org.apache.juli.logging.Log;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.internal.matchers.Null;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import htw.berlin.webtech.service.PollService;
 import org.xmlunit.builder.Input;
@@ -19,6 +22,7 @@ import static org.mockito.Mockito.when;
 
 
 @SpringBootTest
+@ExtendWith(MockitoExtension.class)
 class WebtechApplicationTests {
 
 /*	@Test
@@ -40,18 +44,21 @@ class WebtechApplicationTests {
 
 	}*/
 
+	@Mock
 	private Poll poll;
 
-	@BeforeEach
+/*	@BeforeEach
 	void setup() {
 		poll = Mockito.mock(Poll.class);
-	}
+	}*/
 
 	@Test
 	@DisplayName("should test if poll creation with mock was successful")
 	void testWithMockito(){
+
 		//Arrange
 		//Poll poll = Mockito.mock(Poll.class);
+
 		//Assert
 		assertNotNull(poll);
 	}
